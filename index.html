@@ -1,0 +1,1064 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Charan Teja Gadde | DevOps Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@300;400;500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+<style>
+:root{
+  --bg:#0a0e1a;--bg2:#0f1526;--card:#131929;--border:#1e2d50;
+  --accent:#00d4ff;--accent2:#7c3aed;--accent3:#10b981;
+  --text:#e2e8f0;--text2:#94a3b8;--text3:#64748b;
+  --glow:0 0 20px rgba(0,212,255,0.25);--radius:12px;
+  --font-head:'Syne',sans-serif;--font-mono:'JetBrains Mono',monospace;--font-body:'Inter',sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:var(--font-body);min-height:100vh;overflow-x:hidden;}
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");pointer-events:none;z-index:0;opacity:.35;}
+::-webkit-scrollbar{width:5px;}
+::-webkit-scrollbar-track{background:var(--bg);}
+::-webkit-scrollbar-thumb{background:var(--accent2);border-radius:3px;}
+
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:14px 40px;display:flex;align-items:center;justify-content:space-between;background:rgba(10,14,26,0.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);}
+.nav-logo{font-family:var(--font-head);font-weight:800;font-size:1.15rem;color:var(--accent);letter-spacing:-.5px;}
+.nav-logo span{color:var(--text);}
+.nav-links{display:flex;gap:28px;list-style:none;}
+.nav-links a{font-family:var(--font-mono);font-size:.75rem;color:var(--text2);text-decoration:none;letter-spacing:.05em;transition:color .2s;position:relative;}
+.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;right:0;height:1px;background:var(--accent);transform:scaleX(0);transition:transform .2s;}
+.nav-links a:hover{color:var(--accent);}
+.nav-links a:hover::after{transform:scaleX(1);}
+.nav-right{display:flex;align-items:center;gap:10px;}
+
+/* Cloud status badge */
+.cloud-status{display:inline-flex;align-items:center;gap:6px;font-family:var(--font-mono);font-size:.68rem;padding:5px 12px;border-radius:100px;border:1px solid;letter-spacing:.04em;transition:all .3s;}
+.cloud-status.checking{border-color:var(--border);color:var(--text3);}
+.cloud-status.connected{border-color:rgba(16,185,129,.5);color:var(--accent3);background:rgba(16,185,129,.08);}
+.cloud-status.disconnected{border-color:rgba(239,68,68,.5);color:#ef4444;background:rgba(239,68,68,.08);}
+.cloud-dot{width:7px;height:7px;border-radius:50%;background:currentColor;}
+.cloud-dot.pulse{animation:pulse 1.8s infinite;}
+
+/* Admin btn */
+.admin-btn{font-family:var(--font-mono);font-size:.73rem;background:transparent;border:1px solid var(--accent2);color:var(--accent2);padding:6px 14px;border-radius:6px;cursor:pointer;transition:all .2s;letter-spacing:.04em;white-space:nowrap;}
+.admin-btn:hover,.admin-btn.active{background:var(--accent2);color:#fff;border-color:var(--accent2);}
+
+/* ── HERO ── */
+#home{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:120px 40px 60px;position:relative;overflow:hidden;}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(0,212,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(0,212,255,.04) 1px,transparent 1px);background-size:50px 50px;mask-image:radial-gradient(ellipse 80% 60% at 50% 50%,black,transparent);}
+.hero-orb{position:absolute;border-radius:50%;filter:blur(80px);opacity:.22;pointer-events:none;}
+.hero-orb-1{width:500px;height:500px;background:var(--accent2);top:-100px;right:-80px;}
+.hero-orb-2{width:380px;height:380px;background:var(--accent);bottom:-60px;left:-60px;}
+.hero-content{max-width:900px;text-align:center;position:relative;z-index:1;}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-mono);font-size:.73rem;color:var(--accent);background:rgba(0,212,255,.08);border:1px solid rgba(0,212,255,.25);padding:6px 16px;border-radius:100px;margin-bottom:28px;letter-spacing:.08em;}
+.hero-badge .dot{width:8px;height:8px;border-radius:50%;background:var(--accent);animation:pulse 2s infinite;}
+.hero-name{font-family:var(--font-head);font-weight:800;font-size:clamp(2.8rem,8vw,6rem);line-height:1.05;letter-spacing:-2px;background:linear-gradient(135deg,#fff 30%,var(--accent) 65%,var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:16px;}
+.hero-sub{font-family:var(--font-mono);font-size:clamp(.85rem,2vw,1.05rem);color:var(--accent);margin-bottom:20px;letter-spacing:.12em;}
+.hero-desc{font-size:.96rem;color:var(--text2);line-height:1.85;max-width:580px;margin:0 auto 36px;}
+.hero-ctas{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
+.btn-primary{font-family:var(--font-mono);font-size:.8rem;letter-spacing:.05em;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;border:none;padding:12px 26px;border-radius:8px;cursor:pointer;transition:all .3s;text-decoration:none;display:inline-flex;align-items:center;gap:8px;}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(0,212,255,.28);}
+.btn-outline{font-family:var(--font-mono);font-size:.8rem;letter-spacing:.05em;background:transparent;color:var(--text);border:1px solid var(--border);padding:12px 26px;border-radius:8px;cursor:pointer;transition:all .3s;text-decoration:none;display:inline-flex;align-items:center;gap:8px;}
+.btn-outline:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-2px);}
+.hero-stats{display:flex;gap:40px;justify-content:center;margin-top:56px;flex-wrap:wrap;}
+.stat{text-align:center;}
+.stat-num{font-family:var(--font-head);font-size:2rem;font-weight:800;color:var(--accent);}
+.stat-label{font-family:var(--font-mono);font-size:.68rem;color:var(--text3);letter-spacing:.1em;margin-top:4px;}
+.terminal-line{font-family:var(--font-mono);font-size:.78rem;color:var(--text3);margin-top:38px;display:flex;align-items:center;gap:6px;justify-content:center;}
+.terminal-line::before{content:'>';color:var(--accent);}
+.cursor{display:inline-block;width:8px;height:14px;background:var(--accent);animation:blink 1s infinite;vertical-align:middle;margin-left:3px;}
+
+/* ── SECTIONS ── */
+section{padding:80px 40px;max-width:1100px;margin:0 auto;position:relative;z-index:1;}
+.section-tag{font-family:var(--font-mono);font-size:.7rem;color:var(--accent);letter-spacing:.15em;text-transform:uppercase;margin-bottom:10px;display:flex;align-items:center;gap:10px;}
+.section-tag::before{content:'';height:1px;width:28px;background:var(--accent);}
+.section-title{font-family:var(--font-head);font-weight:700;font-size:clamp(1.8rem,5vw,2.6rem);margin-bottom:10px;letter-spacing:-1px;}
+.section-sub{color:var(--text2);font-size:.92rem;margin-bottom:0;max-width:500px;}
+.section-header{display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:16px;margin-bottom:40px;}
+
+/* Edit button — hidden by default, shown in admin-mode */
+.edit-btn{
+  font-family:var(--font-mono);font-size:.7rem;
+  background:rgba(124,58,237,.12);border:1px solid rgba(124,58,237,.35);
+  color:var(--accent2);padding:7px 16px;border-radius:6px;
+  cursor:pointer;transition:all .2s;
+  display:none !important; /* hidden for viewers */
+  align-items:center;gap:6px;letter-spacing:.04em;
+}
+.edit-btn:hover{background:var(--accent2);color:#fff;}
+body.admin-mode .edit-btn{display:inline-flex !important;}
+
+/* ── ABOUT ── */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:36px;align-items:start;}
+.about-text p{color:var(--text2);line-height:1.9;margin-bottom:14px;font-size:.93rem;}
+.info-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:24px;}
+.info-row{display:flex;align-items:center;gap:12px;padding:11px 0;border-bottom:1px solid rgba(30,45,80,.5);}
+.info-row:last-child{border-bottom:none;}
+.info-icon{color:var(--accent);width:18px;text-align:center;font-size:.85rem;flex-shrink:0;}
+.info-label{font-family:var(--font-mono);font-size:.68rem;color:var(--text3);letter-spacing:.07em;width:78px;flex-shrink:0;}
+.info-val{color:var(--text);font-size:.86rem;}
+.info-val a{color:var(--accent);text-decoration:none;}
+.info-val a:hover{text-decoration:underline;}
+
+/* ── SKILLS ── */
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:20px;}
+.skill-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:22px;transition:all .3s;}
+.skill-card:hover{border-color:var(--accent);transform:translateY(-3px);box-shadow:var(--glow);}
+.skill-cat{font-family:var(--font-mono);font-size:.7rem;color:var(--accent);letter-spacing:.1em;text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:8px;}
+.skill-tags{display:flex;flex-wrap:wrap;gap:7px;}
+.skill-tag{font-family:var(--font-mono);font-size:.7rem;background:rgba(0,212,255,.07);border:1px solid rgba(0,212,255,.18);color:var(--text);padding:4px 11px;border-radius:100px;}
+
+/* ── PROJECTS ── */
+.projects-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:22px;}
+.project-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:26px;transition:all .3s;position:relative;overflow:hidden;}
+.project-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--accent),var(--accent2));transform:scaleX(0);transform-origin:left;transition:transform .3s;}
+.project-card:hover::before{transform:scaleX(1);}
+.project-card:hover{border-color:rgba(0,212,255,.3);transform:translateY(-4px);box-shadow:var(--glow);}
+.proj-header{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:12px;}
+.proj-icon{width:42px;height:42px;border-radius:10px;background:linear-gradient(135deg,rgba(0,212,255,.12),rgba(124,58,237,.12));border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:1.15rem;flex-shrink:0;}
+.proj-links{display:flex;gap:8px;}
+.proj-link{color:var(--text3);font-size:.85rem;transition:color .2s;text-decoration:none;}
+.proj-link:hover{color:var(--accent);}
+.proj-name{font-family:var(--font-head);font-weight:700;font-size:1rem;margin-bottom:8px;}
+.proj-desc{color:var(--text2);font-size:.845rem;line-height:1.7;margin-bottom:14px;}
+.proj-tags{display:flex;flex-wrap:wrap;gap:5px;}
+.proj-tag{font-family:var(--font-mono);font-size:.66rem;background:rgba(124,58,237,.1);border:1px solid rgba(124,58,237,.22);color:var(--accent2);padding:3px 9px;border-radius:100px;}
+/* Admin actions on project cards */
+.proj-actions{
+  display:none !important;
+  gap:8px;margin-top:14px;padding-top:14px;border-top:1px solid var(--border);
+}
+body.admin-mode .proj-actions{display:flex !important;}
+.proj-edit-btn,.proj-del-btn{font-family:var(--font-mono);font-size:.68rem;padding:5px 11px;border-radius:5px;cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:5px;border:1px solid;}
+.proj-edit-btn{background:rgba(0,212,255,.08);border-color:rgba(0,212,255,.28);color:var(--accent);}
+.proj-edit-btn:hover{background:var(--accent);color:var(--bg);}
+.proj-del-btn{background:rgba(239,68,68,.08);border-color:rgba(239,68,68,.28);color:#ef4444;}
+.proj-del-btn:hover{background:#ef4444;color:#fff;}
+/* Add project dashed card — hidden for viewers */
+.add-proj-card{
+  border:2px dashed var(--border);border-radius:var(--radius);padding:26px;
+  display:none !important;
+  align-items:center;justify-content:center;gap:10px;cursor:pointer;
+  transition:all .3s;color:var(--text3);font-family:var(--font-mono);font-size:.8rem;
+  letter-spacing:.05em;background:transparent;width:100%;
+}
+.add-proj-card:hover{border-color:var(--accent);color:var(--accent);}
+body.admin-mode .add-proj-card{display:flex !important;}
+
+/* ── CONTACT ── */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:36px;align-items:start;}
+.contact-item{display:flex;align-items:flex-start;gap:14px;padding:18px;background:var(--card);border:1px solid var(--border);border-radius:var(--radius);margin-bottom:14px;transition:all .3s;}
+.contact-item:hover{border-color:var(--accent);box-shadow:var(--glow);}
+.contact-icon{width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg,rgba(0,212,255,.12),rgba(124,58,237,.12));display:flex;align-items:center;justify-content:center;color:var(--accent);font-size:.95rem;flex-shrink:0;}
+.contact-label{font-family:var(--font-mono);font-size:.68rem;color:var(--text3);letter-spacing:.07em;margin-bottom:3px;}
+.contact-val{color:var(--text);font-size:.88rem;}
+.contact-val a{color:var(--accent);text-decoration:none;}
+.contact-val a:hover{text-decoration:underline;}
+.contact-form{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:28px;}
+.contact-form h3{font-family:var(--font-head);font-weight:700;font-size:1.15rem;margin-bottom:20px;}
+.form-group{margin-bottom:16px;}
+.form-group label{font-family:var(--font-mono);font-size:.68rem;color:var(--text3);letter-spacing:.07em;display:block;margin-bottom:7px;}
+.form-group input,.form-group textarea{width:100%;background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:11px 14px;color:var(--text);font-family:var(--font-body);font-size:.88rem;outline:none;transition:border-color .2s;}
+.form-group input:focus,.form-group textarea:focus{border-color:var(--accent);}
+.form-group textarea{resize:vertical;min-height:90px;}
+.form-row{display:flex;gap:12px;}
+.form-row .form-group{flex:1;}
+
+/* ── FOOTER ── */
+footer{text-align:center;padding:36px 20px;border-top:1px solid var(--border);font-family:var(--font-mono);font-size:.72rem;color:var(--text3);letter-spacing:.05em;position:relative;z-index:1;}
+footer span{color:var(--accent);}
+.divider{max-width:1100px;margin:0 auto;border:none;border-top:1px solid var(--border);}
+
+/* ── MODALS ── */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.82);display:flex;align-items:center;justify-content:center;z-index:2000;backdrop-filter:blur(10px);opacity:0;pointer-events:none;transition:opacity .25s;padding:16px;}
+.modal-overlay.open{opacity:1;pointer-events:all;}
+.modal{background:var(--bg2);border:1px solid var(--border);border-radius:16px;width:100%;max-width:680px;max-height:90vh;overflow-y:auto;padding:36px;position:relative;transform:translateY(20px) scale(.97);transition:transform .25s;}
+.modal-overlay.open .modal{transform:translateY(0) scale(1);}
+.modal-close{position:absolute;top:16px;right:16px;background:rgba(255,255,255,.05);border:1px solid var(--border);color:var(--text2);width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .2s;font-size:.85rem;}
+.modal-close:hover{background:rgba(239,68,68,.2);color:#ef4444;border-color:#ef4444;}
+.modal-title{font-family:var(--font-head);font-weight:700;font-size:1.6rem;margin-bottom:4px;}
+.modal-sub{font-family:var(--font-mono);font-size:.73rem;color:var(--accent);letter-spacing:.08em;margin-bottom:28px;}
+.modal-actions{display:flex;gap:10px;margin-top:24px;flex-wrap:wrap;}
+.admin-panel{max-width:420px;}
+.edit-modal{max-width:700px;}
+
+/* Resume modal specifics */
+.resume-section{margin-bottom:28px;}
+.resume-section-title{font-family:var(--font-mono);font-size:.68rem;color:var(--accent);letter-spacing:.14em;text-transform:uppercase;border-bottom:1px solid var(--border);padding-bottom:9px;margin-bottom:16px;}
+.resume-item{margin-bottom:18px;}
+.resume-item-head{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:6px;}
+.resume-item-title{font-weight:600;font-size:.93rem;}
+.resume-item-date{font-family:var(--font-mono);font-size:.7rem;color:var(--text3);}
+.resume-item-sub{color:var(--accent2);font-size:.83rem;margin:4px 0 7px;}
+.resume-item-desc{color:var(--text2);font-size:.83rem;line-height:1.75;}
+
+/* ── ADMIN BAR ── */
+.admin-bar{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);background:rgba(15,21,38,.95);border:1px solid rgba(124,58,237,.45);backdrop-filter:blur(16px);border-radius:100px;padding:9px 22px;display:none;align-items:center;gap:14px;font-family:var(--font-mono);font-size:.72rem;color:var(--accent2);z-index:999;letter-spacing:.05em;white-space:nowrap;}
+body.admin-mode .admin-bar{display:flex;}
+.admin-bar i{font-size:.85rem;}
+.admin-bar-logout{background:transparent;border:1px solid rgba(239,68,68,.4);color:#ef4444;padding:4px 12px;border-radius:100px;cursor:pointer;font-family:var(--font-mono);font-size:.68rem;transition:all .2s;}
+.admin-bar-logout:hover{background:#ef4444;color:#fff;}
+
+/* ── TOAST ── */
+.toast{position:fixed;bottom:72px;right:20px;z-index:3000;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:12px 18px;font-family:var(--font-mono);font-size:.75rem;display:flex;align-items:center;gap:8px;transform:translateX(130%);transition:transform .3s cubic-bezier(.34,1.56,.64,1);max-width:310px;box-shadow:0 8px 30px rgba(0,0,0,.4);}
+.toast.show{transform:translateX(0);}
+.toast.success{border-color:var(--accent3);color:var(--accent3);}
+.toast.error{border-color:#ef4444;color:#ef4444;}
+.toast.info{border-color:var(--accent);color:var(--accent);}
+
+/* ── PROGRESS BAR ── */
+#progress-bar{position:fixed;top:0;left:0;right:0;height:3px;z-index:9999;background:linear-gradient(90deg,var(--accent),var(--accent2),var(--accent));background-size:200% 100%;animation:pbAnim 1.2s linear infinite;display:none;}
+#progress-bar.visible{display:block;}
+
+/* ── ANIMATIONS ── */
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.5;transform:scale(.8);}}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:0;}}
+@keyframes pbAnim{0%{background-position:200% 0}100%{background-position:-200% 0}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
+.fade-up{animation:fadeUp .5s ease both;}
+
+/* ── RESPONSIVE ── */
+@media(max-width:768px){
+  nav{padding:12px 18px;}
+  .nav-links{display:none;}
+  section{padding:56px 18px;}
+  .about-grid,.contact-grid{grid-template-columns:1fr;}
+  .hero-stats{gap:20px;}
+  #home{padding:110px 18px 50px;}
+  .cloud-status .cloud-label{display:none;}
+  .modal{padding:24px;}
+}
+</style>
+</head>
+<body>
+
+<!-- ── PROGRESS BAR ── -->
+<div id="progress-bar"></div>
+
+<!-- ══════════ NAV ══════════ -->
+<nav>
+  <div class="nav-logo">CTG<span>.dev</span></div>
+  <ul class="nav-links">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#" onclick="openResumeModal(event)">Resume</a></li>
+  </ul>
+  <div class="nav-right">
+    <div class="cloud-status checking" id="cloudStatus">
+      <div class="cloud-dot pulse"></div>
+      <span class="cloud-label">Connecting…</span>
+    </div>
+    <button class="admin-btn" id="adminBtn" onclick="toggleAdminLogin()">
+      <i class="fas fa-shield-halved"></i> Admin
+    </button>
+  </div>
+</nav>
+
+<!-- ══════════ HERO ══════════ -->
+<section id="home" style="max-width:100%;padding-top:0;">
+  <div class="hero-grid"></div>
+  <div class="hero-orb hero-orb-1"></div>
+  <div class="hero-orb hero-orb-2"></div>
+  <div class="hero-content">
+    <div class="hero-badge"><span class="dot"></span>Available for Opportunities</div>
+    <h1 class="hero-name">Charan Teja<br>Gadde</h1>
+    <div class="hero-sub">// DevOps Engineer Portfolio</div>
+    <p class="hero-desc">Building scalable infrastructure &amp; automating the future. Passionate about CI/CD, cloud-native architectures, and making deployments reliable.</p>
+    <div class="hero-ctas">
+      <a href="#projects" class="btn-primary"><i class="fas fa-rocket"></i>View Projects</a>
+      <a href="#" onclick="openResumeModal(event)" class="btn-outline"><i class="fas fa-file-lines"></i>My Resume</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><div class="stat-num" id="stat-projects">10+</div><div class="stat-label">Projects</div></div>
+      <div class="stat"><div class="stat-num" id="stat-tools">20+</div><div class="stat-label">Tools &amp; Tech</div></div>
+      <div class="stat"><div class="stat-num" id="stat-exp">1+</div><div class="stat-label">Years Exp.</div></div>
+    </div>
+    <div class="terminal-line">cat charan.yaml | grep "passion"<span class="cursor"></span></div>
+  </div>
+</section>
+<hr class="divider"/>
+
+<!-- ══════════ ABOUT ══════════ -->
+<section id="about">
+  <div class="section-header">
+    <div class="section-info">
+      <div class="section-tag">01 // about</div>
+      <h2 class="section-title">About Me</h2>
+      <p class="section-sub">A brief introduction to who I am and what I do.</p>
+    </div>
+    <button class="edit-btn" onclick="openEditAbout()"><i class="fas fa-pen"></i> Edit About</button>
+  </div>
+  <div class="about-grid">
+    <div class="about-text" id="about-text">
+      <p>Hi! I'm <strong>Charan Teja Gadde</strong>, a passionate DevOps Engineer who loves automating everything that can be automated. I believe great infrastructure is invisible — it just works.</p>
+      <p>I specialize in building robust CI/CD pipelines, managing cloud infrastructure on AWS, containerizing applications with Docker &amp; Kubernetes, and ensuring high availability through monitoring and alerting.</p>
+      <p>My approach combines developer empathy with operational rigor — bridging the gap between development speed and production reliability.</p>
+      <p>When I'm not architecting pipelines, I'm exploring new DevOps tools, contributing to open source, or writing about infrastructure automation.</p>
+    </div>
+    <div class="info-card">
+      <div class="info-row"><div class="info-icon"><i class="fas fa-user"></i></div><div class="info-label">Name</div><div class="info-val">Charan Teja Gadde</div></div>
+      <div class="info-row"><div class="info-icon"><i class="fas fa-map-pin"></i></div><div class="info-label">Location</div><div class="info-val" id="info-location">Hyderabad, India</div></div>
+      <div class="info-row"><div class="info-icon"><i class="fas fa-envelope"></i></div><div class="info-label">Email</div><div class="info-val" id="info-email"><a href="#">—</a></div></div>
+      <div class="info-row"><div class="info-icon"><i class="fab fa-linkedin"></i></div><div class="info-label">LinkedIn</div><div class="info-val" id="info-linkedin"><a href="#">—</a></div></div>
+      <div class="info-row"><div class="info-icon"><i class="fab fa-github"></i></div><div class="info-label">GitHub</div><div class="info-val" id="info-github"><a href="#">—</a></div></div>
+      <div class="info-row"><div class="info-icon"><i class="fas fa-briefcase"></i></div><div class="info-label">Role</div><div class="info-val" id="info-role">DevOps Engineer</div></div>
+      <div class="info-row"><div class="info-icon"><i class="fas fa-circle-check"></i></div><div class="info-label">Status</div><div class="info-val" style="color:var(--accent3);">Open to Work ✓</div></div>
+    </div>
+  </div>
+</section>
+<hr class="divider"/>
+
+<!-- ══════════ SKILLS ══════════ -->
+<section id="skills">
+  <div class="section-header">
+    <div class="section-info">
+      <div class="section-tag">02 // skills</div>
+      <h2 class="section-title">Tech Stack</h2>
+      <p class="section-sub">Tools and technologies I work with daily.</p>
+    </div>
+    <button class="edit-btn" onclick="openEditSkills()"><i class="fas fa-pen"></i> Edit Skills</button>
+  </div>
+  <div class="skills-grid" id="skills-grid"></div>
+</section>
+<hr class="divider"/>
+
+<!-- ══════════ PROJECTS ══════════ -->
+<section id="projects">
+  <div class="section-header">
+    <div class="section-info">
+      <div class="section-tag">03 // projects</div>
+      <h2 class="section-title">DevOps Projects</h2>
+      <p class="section-sub">Real-world infrastructure &amp; automation projects I've built.</p>
+    </div>
+    <button class="edit-btn" onclick="openAddProject()"><i class="fas fa-plus"></i> Add Project</button>
+  </div>
+  <div class="projects-grid" id="projects-grid"></div>
+  <!-- Dashed "add" card — only visible to admin -->
+  <button class="add-proj-card" onclick="openAddProject()" style="margin-top:22px;">
+    <i class="fas fa-plus-circle"></i> Add New Project
+  </button>
+</section>
+<hr class="divider"/>
+
+<!-- ══════════ CONTACT ══════════ -->
+<section id="contact">
+  <div class="section-header">
+    <div class="section-info">
+      <div class="section-tag">04 // contact</div>
+      <h2 class="section-title">Get In Touch</h2>
+      <p class="section-sub">Have an opportunity or just want to say hello?</p>
+    </div>
+    <button class="edit-btn" onclick="openEditContact()"><i class="fas fa-pen"></i> Edit Contact</button>
+  </div>
+  <div class="contact-grid">
+    <div>
+      <div class="contact-item"><div class="contact-icon"><i class="fas fa-envelope"></i></div><div><div class="contact-label">Email</div><div class="contact-val"><a href="#" id="c-email">—</a></div></div></div>
+      <div class="contact-item"><div class="contact-icon"><i class="fab fa-linkedin"></i></div><div><div class="contact-label">LinkedIn</div><div class="contact-val"><a href="#" id="c-linkedin" target="_blank">—</a></div></div></div>
+      <div class="contact-item"><div class="contact-icon"><i class="fab fa-github"></i></div><div><div class="contact-label">GitHub</div><div class="contact-val"><a href="#" id="c-github" target="_blank">—</a></div></div></div>
+      <div class="contact-item"><div class="contact-icon"><i class="fab fa-twitter"></i></div><div><div class="contact-label">Twitter / X</div><div class="contact-val"><a href="#" id="c-twitter" target="_blank">—</a></div></div></div>
+    </div>
+    <div class="contact-form">
+      <h3>Send a Message</h3>
+      <div class="form-group"><label>YOUR NAME</label><input type="text" id="cf-name" placeholder="John Doe"/></div>
+      <div class="form-group"><label>EMAIL ADDRESS</label><input type="email" id="cf-email" placeholder="john@example.com"/></div>
+      <div class="form-group"><label>MESSAGE</label><textarea id="cf-msg" placeholder="I'd like to discuss an opportunity…"></textarea></div>
+      <button class="btn-primary" onclick="handleContactForm()" style="width:100%;justify-content:center;"><i class="fas fa-paper-plane"></i>Send Message</button>
+      <p style="font-family:var(--font-mono);font-size:.68rem;color:var(--text3);margin-top:10px;">* Opens your email client with the message pre-filled.</p>
+    </div>
+  </div>
+</section>
+<hr class="divider"/>
+
+<footer>
+  <p>© 2025 <span>Charan Teja Gadde</span> · DevOps Portfolio · Connected to <span>JSONBin Cloud ☁</span></p>
+</footer>
+
+<!-- ══════════ ADMIN BAR ══════════ -->
+<div class="admin-bar" id="adminBar">
+  <i class="fas fa-shield-halved"></i>
+  <span>Admin Mode Active — All edits save to cloud</span>
+  <button class="admin-bar-logout" onclick="logoutAdmin()">Logout</button>
+</div>
+
+<!-- ══════════ TOAST ══════════ -->
+<div class="toast" id="toast"></div>
+
+<!-- ═══════════════════════════════════
+     MODALS
+═══════════════════════════════════ -->
+
+<!-- Admin Login -->
+<div class="modal-overlay" id="adminModal">
+  <div class="modal admin-panel">
+    <button class="modal-close" onclick="closeModal('adminModal')"><i class="fas fa-times"></i></button>
+    <div class="modal-title">Admin Login</div>
+    <div class="modal-sub">// Restricted — Portfolio Owner Only</div>
+    <div class="form-group">
+      <label>PASSWORD</label>
+      <input type="password" id="adminPass" placeholder="Enter admin password" autocomplete="current-password"/>
+    </div>
+    <div id="loginError" style="color:#ef4444;font-family:var(--font-mono);font-size:.72rem;margin-bottom:8px;display:none;">✗ Incorrect password. Try again.</div>
+    <div class="modal-actions">
+      <button class="btn-primary" onclick="loginAdmin()" id="loginBtn"><i class="fas fa-unlock"></i>Login</button>
+      <button class="btn-outline" onclick="closeModal('adminModal')">Cancel</button>
+    </div>
+    <p style="font-family:var(--font-mono);font-size:.68rem;color:var(--text3);margin-top:14px;">Default: <span style="color:var(--accent);">admin123</span> — change in CONFIG before deploying.</p>
+  </div>
+</div>
+
+<!-- Resume Modal -->
+<div class="modal-overlay" id="resumeModal">
+  <div class="modal" style="max-width:780px;">
+    <button class="modal-close" onclick="closeModal('resumeModal')"><i class="fas fa-times"></i></button>
+    <div class="modal-title">Charan Teja Gadde</div>
+    <div class="modal-sub">// DevOps Engineer · Resume</div>
+    <div id="resume-content">
+      <div class="resume-section">
+        <div class="resume-section-title">Summary</div>
+        <div class="resume-item"><div class="resume-item-desc" id="resume-summary">Enthusiastic DevOps Engineer skilled in CI/CD pipeline automation, cloud infrastructure (AWS), containerization (Docker, Kubernetes), and infrastructure as code (Terraform). Passionate about bridging development and operations to deliver reliable, scalable systems.</div></div>
+      </div>
+      <div class="resume-section">
+        <div class="resume-section-title">Experience</div>
+        <div id="resume-experience">
+          <div class="resume-item">
+            <div class="resume-item-head"><div class="resume-item-title">DevOps Engineer</div><div class="resume-item-date">2024 – Present</div></div>
+            <div class="resume-item-sub">Company Name · Hyderabad, India</div>
+            <div class="resume-item-desc">• Built and maintained CI/CD pipelines using Jenkins and GitHub Actions<br>• Managed Kubernetes clusters and Docker container orchestration<br>• Automated infrastructure provisioning with Terraform on AWS</div>
+          </div>
+        </div>
+      </div>
+      <div class="resume-section">
+        <div class="resume-section-title">Education</div>
+        <div id="resume-education">
+          <div class="resume-item">
+            <div class="resume-item-head"><div class="resume-item-title">B.Tech – Computer Science</div><div class="resume-item-date">2020 – 2024</div></div>
+            <div class="resume-item-sub">University Name · Hyderabad, India</div>
+            <div class="resume-item-desc">CGPA: 8.5 / 10.0</div>
+          </div>
+        </div>
+      </div>
+      <div class="resume-section">
+        <div class="resume-section-title">Certifications</div>
+        <div id="resume-certs">
+          <div class="resume-item"><div class="resume-item-head"><div class="resume-item-title">AWS Certified Solutions Architect – Associate</div><div class="resume-item-date">2024</div></div></div>
+          <div class="resume-item"><div class="resume-item-head"><div class="resume-item-title">Certified Kubernetes Administrator (CKA)</div><div class="resume-item-date">2024</div></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-actions">
+      <button class="btn-primary" onclick="downloadResume()"><i class="fas fa-download"></i>Download</button>
+      <!-- Edit Resume button — only admin sees it -->
+      <button class="edit-btn" id="resumeEditBtn" onclick="openEditResume()" style="margin:0;"><i class="fas fa-pen"></i>Edit Resume</button>
+      <button class="btn-outline" onclick="closeModal('resumeModal')">Close</button>
+    </div>
+  </div>
+</div>
+
+<!-- Edit About Modal -->
+<div class="modal-overlay" id="editAboutModal">
+  <div class="modal edit-modal">
+    <button class="modal-close" onclick="closeModal('editAboutModal')"><i class="fas fa-times"></i></button>
+    <div class="modal-title">Edit About</div>
+    <div class="modal-sub">// Update your profile info</div>
+    <div class="form-group"><label>BIO TEXT (plain text or HTML &lt;p&gt; tags)</label><textarea id="edit-about-text" style="min-height:120px;"></textarea></div>
+    <div class="form-row">
+      <div class="form-group"><label>LOCATION</label><input id="edit-location" type="text"/></div>
+      <div class="form-group"><label>ROLE / TITLE</label><input id="edit-role" type="text"/></div>
+    </div>
+    <div class="form-row">
+      <div class="form-group"><label>EMAIL</label><input id="edit-email" type="text"/></div>
+      <div class="form-group"><label>LINKEDIN URL</label><input id="edit-linkedin" type="text"/></div>
+    </div>
+    <div class="form-row">
+      <div class="form-group"><label>GITHUB URL</label><input id="edit-github" type="text"/></div>
+      <div class="form-group"><label>TWITTER (@handle)</label><input id="edit-twitter" type="text"/></div>
+    </div>
+    <div class="form-row">
+      <div class="form-group"><label>PROJECTS STAT</label><input id="edit-stat-projects" type="text" placeholder="10+"/></div>
+      <div class="form-group"><label>TOOLS STAT</label><input id="edit-stat-tools" type="text" placeholder="20+"/></div>
+      <div class="form-group"><label>EXPERIENCE STAT</label><input id="edit-stat-exp" type="text" placeholder="1+"/></div>
+    </div>
+    <div class="modal-actions">
+      <button class="btn-primary" onclick="saveAbout()"><i class="fas fa-save"></i>Save Changes</button>
+      <button class="btn-outline" onclick="closeModal('editAboutModal')">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<!-- Edit Skills Modal -->
+<div class="modal-overlay" id="editSkillsModal">
+  <div class="modal edit-modal">
+    <button class="modal-close" onclick="closeModal('editSkillsModal')"><i class="fas fa-times"></i></button>
+    <div class="modal-title">Edit Skills</div>
+    <div class="modal-sub">// Update your tech stack</div>
+    <div class="form-group">
+      <label>SKILLS JSON — Array of: {"cat":"Category","icon":"fa-icon-class","tags":["Tag1","Tag2"]}</label>
+      <textarea id="edit-skills-json" style="min-height:300px;font-family:var(--font-mono);font-size:.75rem;"></textarea>
+    </div>
+    <div class="modal-actions">
+      <button class="btn-primary" onclick="saveSkills()"><i class="fas fa-save"></i>Save Skills</button>
+      <button class="btn-outline" onclick="closeModal('editSkillsModal')">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<!-- Add / Edit Project Modal -->
+<div class="modal-overlay" id="editProjectModal">
+  <div class="modal edit-modal">
+    <button class="modal-close" onclick="closeModal('editProjectModal')"><i class="fas fa-times"></i></button>
+    <div class="modal-title" id="proj-modal-title">Add Project</div>
+    <div class="modal-sub">// Project Details</div>
+    <input type="hidden" id="edit-proj-id"/>
+    <div class="form-row">
+      <div class="form-group" style="flex:2;"><label>PROJECT NAME *</label><input id="edit-proj-name" type="text" placeholder="My Awesome Pipeline"/></div>
+      <div class="form-group" style="flex:0 0 90px;"><label>ICON (emoji)</label><input id="edit-proj-icon" type="text" placeholder="🚀" style="text-align:center;font-size:1.2rem;"/></div>
+    </div>
+    <div class="form-group"><label>DESCRIPTION</label><textarea id="edit-proj-desc" style="min-height:90px;" placeholder="What did you build and why…"></textarea></div>
+    <div class="form-row">
+      <div class="form-group"><label>GITHUB URL</label><input id="edit-proj-github" type="text" placeholder="https://github.com/…"/></div>
+      <div class="form-group"><label>LIVE DEMO URL</label><input id="edit-proj-demo" type="text" placeholder="https://…"/></div>
+    </div>
+    <div class="form-group"><label>TAGS (comma separated)</label><input id="edit-proj-tags" type="text" placeholder="Docker, Kubernetes, AWS"/></div>
+    <div class="modal-actions">
+      <button class="btn-primary" onclick="saveProject()"><i class="fas fa-save"></i>Save Project</button>
+      <button class="btn-outline" onclick="closeModal('editProjectModal')">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<!-- Edit Contact Modal -->
+<div class="modal-overlay" id="editContactModal">
+  <div class="modal edit-modal">
+    <button class="modal-close" onclick="closeModal('editContactModal')"><i class="fas fa-times"></i></button>
+    <div class="modal-title">Edit Contact</div>
+    <div class="modal-sub">// Update your contact details</div>
+    <div class="form-row">
+      <div class="form-group"><label>EMAIL</label><input id="contact-edit-email" type="text"/></div>
+      <div class="form-group"><label>LINKEDIN URL</label><input id="contact-edit-linkedin" type="text"/></div>
+    </div>
+    <div class="form-row">
+      <div class="form-group"><label>GITHUB URL</label><input id="contact-edit-github" type="text"/></div>
+      <div class="form-group"><label>TWITTER HANDLE</label><input id="contact-edit-twitter" type="text"/></div>
+    </div>
+    <div class="modal-actions">
+      <button class="btn-primary" onclick="saveContact()"><i class="fas fa-save"></i>Save Contact</button>
+      <button class="btn-outline" onclick="closeModal('editContactModal')">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<!-- Edit Resume Modal -->
+<div class="modal-overlay" id="editResumeModal">
+  <div class="modal edit-modal">
+    <button class="modal-close" onclick="closeModal('editResumeModal')"><i class="fas fa-times"></i></button>
+    <div class="modal-title">Edit Resume</div>
+    <div class="modal-sub">// Update resume content</div>
+    <div class="form-group"><label>SUMMARY (plain text)</label><textarea id="edit-resume-summary" style="min-height:80px;"></textarea></div>
+    <div class="form-group"><label>EXPERIENCE (HTML allowed)</label><textarea id="edit-resume-exp" style="min-height:160px;font-size:.76rem;font-family:var(--font-mono);"></textarea></div>
+    <div class="form-group"><label>EDUCATION (HTML allowed)</label><textarea id="edit-resume-edu" style="min-height:100px;font-size:.76rem;font-family:var(--font-mono);"></textarea></div>
+    <div class="form-group"><label>CERTIFICATIONS (HTML allowed)</label><textarea id="edit-resume-certs" style="min-height:100px;font-size:.76rem;font-family:var(--font-mono);"></textarea></div>
+    <div class="modal-actions">
+      <button class="btn-primary" onclick="saveResume()"><i class="fas fa-save"></i>Save Resume</button>
+      <button class="btn-outline" onclick="closeModal('editResumeModal')">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════
+     JAVASCRIPT
+═══════════════════════════════════ -->
+<script>
+'use strict';
+
+/* ════════ CONFIG ════════ */
+const CONFIG = {
+  ADMIN_PASSWORD : 'admin123',
+  BIN_ID         : '69dbf3ebaaba882197f01cb6',
+  API_KEY        : '$2a$10$f3Mq2XM9Y1tACtIyarXMFOMzfmPkdgaNy5ObaYqhA.FwSW9mFAucW',
+  API_BASE       : 'https://api.jsonbin.io/v3/b'
+};
+
+/* ════════ DEFAULT DATA ════════ */
+const DEFAULTS = {
+  about:{
+    bio:`<p>Hi! I'm <strong>Charan Teja Gadde</strong>, a passionate DevOps Engineer who loves automating everything that can be automated. I believe great infrastructure is invisible — it just works.</p><p>I specialize in building robust CI/CD pipelines, managing cloud infrastructure on AWS, containerizing applications with Docker &amp; Kubernetes, and ensuring high availability through monitoring and alerting.</p><p>My approach combines developer empathy with operational rigor — bridging the gap between development speed and production reliability.</p><p>When I'm not architecting pipelines, I'm exploring new DevOps tools, contributing to open source, or writing about infrastructure automation.</p>`,
+    location:'Hyderabad, India', email:'charanteja@email.com',
+    linkedin:'https://linkedin.com/in/charanteja',
+    github:'https://github.com/charanteja',
+    twitter:'@charanteja', role:'DevOps Engineer',
+    stats:{projects:'10+',tools:'20+',exp:'1+'}
+  },
+  skills:[
+    {cat:'CI/CD & Automation',    icon:'fa-gears',       tags:['Jenkins','GitHub Actions','GitLab CI','ArgoCD','Ansible','Shell Scripting']},
+    {cat:'Cloud & Infrastructure',icon:'fa-cloud',       tags:['AWS','EC2','S3','RDS','VPC','IAM','CloudWatch','Terraform']},
+    {cat:'Containers & Orchestration',icon:'fa-cubes',   tags:['Docker','Kubernetes','Helm','Docker Compose','ContainerD']},
+    {cat:'Monitoring & Observability',icon:'fa-chart-line',tags:['Prometheus','Grafana','ELK Stack','Datadog','Nagios']},
+    {cat:'Version Control & Collaboration',icon:'fa-code-branch',tags:['Git','GitHub','GitLab','Bitbucket','Jira']},
+    {cat:'Scripting & Programming',icon:'fa-terminal',   tags:['Bash','Python','YAML','JSON','Groovy','HCL']}
+  ],
+  projects:[
+    {id:1,icon:'🚀',name:'CI/CD Pipeline – Jenkins & Kubernetes',desc:'End-to-end CI/CD pipeline that builds Docker images, runs automated tests, and deploys to Kubernetes via Helm. Integrated SonarQube for code quality and Slack notifications.',tags:['Jenkins','Docker','Kubernetes','Helm','SonarQube'],github:'#',demo:''},
+    {id:2,icon:'☁️',name:'AWS Infrastructure with Terraform',desc:'Modular Terraform configuration to provision a production-grade AWS environment including VPC, EKS cluster, RDS, ALB, and CloudWatch monitoring with auto-scaling.',tags:['Terraform','AWS','EKS','VPC','CloudWatch'],github:'#',demo:''},
+    {id:3,icon:'📊',name:'Monitoring Stack – Prometheus & Grafana',desc:'Complete monitoring solution with Prometheus for metrics, Grafana for visualization, and AlertManager routing alerts to PagerDuty and Slack.',tags:['Prometheus','Grafana','AlertManager','Kubernetes'],github:'#',demo:''},
+    {id:4,icon:'🔐',name:'Secrets Management – Vault & K8s',desc:'HashiCorp Vault integration with Kubernetes using the Vault Agent Injector for dynamic secret injection, replacing static environment variables.',tags:['HashiCorp Vault','Kubernetes','Security','Helm'],github:'#',demo:''},
+    {id:5,icon:'🐳',name:'Docker Swarm Multi-App Deployment',desc:'Multi-service deployment on Docker Swarm with overlay networks, shared volumes, and rolling updates for zero-downtime deployments.',tags:['Docker Swarm','Nginx','Load Balancing','Docker'],github:'#',demo:''},
+    {id:6,icon:'⚡',name:'GitOps Workflow with ArgoCD',desc:'GitOps setup using ArgoCD to sync Kubernetes cluster state with Git, enabling automated drift detection and one-click rollback.',tags:['ArgoCD','GitOps','Kubernetes','Kustomize'],github:'#',demo:''}
+  ],
+  contact:{email:'charanteja@email.com',linkedin:'https://linkedin.com/in/charanteja',github:'https://github.com/charanteja',twitter:'@charanteja'},
+  resume:{
+    summary:'Enthusiastic DevOps Engineer skilled in CI/CD pipeline automation, cloud infrastructure (AWS), containerization (Docker, Kubernetes), and infrastructure as code (Terraform). Passionate about bridging development and operations to deliver reliable, scalable systems.',
+    experience:'',education:'',certs:''
+  }
+};
+
+/* ════════ STATE ════════ */
+let isAdmin = false;
+let data    = deepClone(DEFAULTS);
+
+/* ════════ INIT ════════ */
+document.addEventListener('DOMContentLoaded', () => {
+  // Capture default resume HTML before JS overwrites
+  DEFAULTS.resume.experience = document.getElementById('resume-experience').innerHTML;
+  DEFAULTS.resume.education  = document.getElementById('resume-education').innerHTML;
+  DEFAULTS.resume.certs      = document.getElementById('resume-certs').innerHTML;
+  data = deepClone(DEFAULTS);
+
+  // Enter on password field triggers login
+  document.getElementById('adminPass').addEventListener('keydown', e => {
+    if (e.key === 'Enter') loginAdmin();
+  });
+
+  loadData();
+});
+
+/* ════════ JSONBIN API ════════ */
+async function loadData() {
+  setCloud('checking');
+  showBar();
+  try {
+    const res = await fetch(`${CONFIG.API_BASE}/${CONFIG.BIN_ID}/latest`, {
+      headers:{'X-Master-Key': CONFIG.API_KEY, 'X-Bin-Meta':'false'}
+    });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const json = await res.json();
+    if (json && typeof json === 'object' && Object.keys(json).length > 1) {
+      data = deepMerge(deepClone(DEFAULTS), json);
+    } else {
+      // Bin empty — push defaults
+      data = deepClone(DEFAULTS);
+      await pushCloud();
+    }
+    setCloud('connected');
+  } catch(e) {
+    console.error('Load failed:', e.message);
+    data = deepClone(DEFAULTS);
+    setCloud('disconnected');
+    toast('⚠ Cloud load failed — using defaults', 'error');
+  }
+  hideBar();
+  renderAll();
+}
+
+async function saveData() {
+  showBar();
+  try {
+    await pushCloud();
+    toast('✓ Saved to JSONBin cloud ☁', 'success');
+    setCloud('connected');
+  } catch(e) {
+    toast('✗ Save failed: ' + e.message, 'error');
+    setCloud('disconnected');
+  }
+  hideBar();
+}
+
+async function pushCloud() {
+  const res = await fetch(`${CONFIG.API_BASE}/${CONFIG.BIN_ID}`, {
+    method:'PUT',
+    headers:{'Content-Type':'application/json','X-Master-Key':CONFIG.API_KEY},
+    body: JSON.stringify(data)
+  });
+  if (!res.ok) {
+    const t = await res.text().catch(()=>'');
+    throw new Error(`${res.status}: ${t.slice(0,100)}`);
+  }
+}
+
+/* Cloud status badge */
+function setCloud(state) {
+  const el  = document.getElementById('cloudStatus');
+  const dot = el.querySelector('.cloud-dot');
+  const lbl = el.querySelector('.cloud-label');
+  el.className = `cloud-status ${state}`;
+  const labels = {checking:'Connecting…', connected:'Cloud ✓', disconnected:'Offline ✗'};
+  lbl.textContent = labels[state] || state;
+  dot.className = 'cloud-dot' + (state === 'checking' ? ' pulse' : '');
+}
+
+/* Progress bar */
+function showBar() { document.getElementById('progress-bar').classList.add('visible'); }
+function hideBar() { document.getElementById('progress-bar').classList.remove('visible'); }
+
+/* ════════ RENDER ════════ */
+function renderAll() {
+  renderAbout(data.about);
+  renderSkills(data.skills);
+  renderProjects(data.projects);
+  renderContact(data.contact);
+  renderResume(data.resume);
+}
+
+function renderAbout(a) {
+  if (!a) return;
+  document.getElementById('about-text').innerHTML = a.bio || '';
+  setText('info-location', a.location);
+  setText('info-role', a.role);
+  setAnchor('info-email',   `mailto:${a.email}`, a.email);
+  setAnchor('info-linkedin', a.linkedin,          shortUrl(a.linkedin));
+  setAnchor('info-github',   a.github,             shortUrl(a.github));
+  if (a.stats) {
+    setText('stat-projects', a.stats.projects);
+    setText('stat-tools',    a.stats.tools);
+    setText('stat-exp',      a.stats.exp);
+  }
+}
+
+function renderSkills(skills) {
+  const g = document.getElementById('skills-grid');
+  if (!skills || !skills.length) { g.innerHTML = '<p style="color:var(--text3)">No skills added yet.</p>'; return; }
+  g.innerHTML = skills.map(s => `
+    <div class="skill-card fade-up">
+      <div class="skill-cat"><i class="fas ${s.icon}"></i>${s.cat}</div>
+      <div class="skill-tags">${(s.tags||[]).map(t=>`<span class="skill-tag">${t}</span>`).join('')}</div>
+    </div>`).join('');
+}
+
+function renderProjects(projects) {
+  const g = document.getElementById('projects-grid');
+  if (!projects || !projects.length) { g.innerHTML = '<p style="color:var(--text3)">No projects added yet. Login as admin to add projects.</p>'; return; }
+  g.innerHTML = projects.map(p => `
+    <div class="project-card fade-up">
+      <div class="proj-header">
+        <div class="proj-icon">${p.icon||'⚙️'}</div>
+        <div class="proj-links">
+          ${p.github ? `<a class="proj-link" href="${p.github}" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>` : ''}
+          ${p.demo   ? `<a class="proj-link" href="${p.demo}"   target="_blank" title="Live Demo"><i class="fas fa-arrow-up-right-from-square"></i></a>` : ''}
+        </div>
+      </div>
+      <div class="proj-name">${p.name}</div>
+      <div class="proj-desc">${p.desc}</div>
+      <div class="proj-tags">${(p.tags||[]).map(t=>`<span class="proj-tag">${t}</span>`).join('')}</div>
+      <div class="proj-actions">
+        <button class="proj-edit-btn" onclick="openEditProject(${p.id})"><i class="fas fa-pen"></i>Edit</button>
+        <button class="proj-del-btn"  onclick="deleteProject(${p.id})"><i class="fas fa-trash"></i>Delete</button>
+      </div>
+    </div>`).join('');
+}
+
+function renderContact(c) {
+  if (!c) return;
+  setAnchor('c-email',   `mailto:${c.email}`, c.email);
+  setAnchor('c-linkedin', c.linkedin, shortUrl(c.linkedin));
+  setAnchor('c-github',   c.github,   shortUrl(c.github));
+  const tw = document.getElementById('c-twitter');
+  if (tw) { tw.href = `https://twitter.com/${(c.twitter||'').replace('@','')}`; tw.textContent = c.twitter||'—'; }
+}
+
+function renderResume(r) {
+  if (!r) return;
+  if (r.summary)    document.getElementById('resume-summary').textContent   = r.summary;
+  if (r.experience) document.getElementById('resume-experience').innerHTML  = r.experience;
+  if (r.education)  document.getElementById('resume-education').innerHTML   = r.education;
+  if (r.certs)      document.getElementById('resume-certs').innerHTML       = r.certs;
+}
+
+/* ════════ ADMIN AUTH ════════ */
+function toggleAdminLogin() {
+  if (isAdmin) { logoutAdmin(); return; }
+  document.getElementById('loginError').style.display = 'none';
+  document.getElementById('adminPass').value = '';
+  openModal('adminModal');
+  // small delay so modal is visible before focus
+  setTimeout(() => document.getElementById('adminPass').focus(), 350);
+}
+
+function loginAdmin() {
+  const pass = document.getElementById('adminPass').value;
+  if (pass === CONFIG.ADMIN_PASSWORD) {
+    isAdmin = true;
+    document.body.classList.add('admin-mode');
+    document.getElementById('adminBtn').innerHTML = '<i class="fas fa-unlock"></i> Admin ✓';
+    document.getElementById('adminBtn').classList.add('active');
+    document.getElementById('loginError').style.display = 'none';
+    closeModal('adminModal');
+    toast('✓ Admin mode activated', 'success');
+  } else {
+    document.getElementById('loginError').style.display = 'block';
+    document.getElementById('adminPass').value = '';
+    document.getElementById('adminPass').focus();
+  }
+}
+
+function logoutAdmin() {
+  isAdmin = false;
+  document.body.classList.remove('admin-mode');
+  document.getElementById('adminBtn').innerHTML = '<i class="fas fa-shield-halved"></i> Admin';
+  document.getElementById('adminBtn').classList.remove('active');
+  toast('Admin mode deactivated', 'info');
+}
+
+/* ════════ MODAL HELPERS ════════ */
+function openModal(id)  { document.getElementById(id).classList.add('open'); }
+function closeModal(id) { document.getElementById(id).classList.remove('open'); }
+
+// Close modal on backdrop click
+document.addEventListener('click', e => {
+  if (e.target.classList.contains('modal-overlay')) {
+    e.target.classList.remove('open');
+  }
+});
+
+function openResumeModal(e) {
+  if (e) e.preventDefault();
+  openModal('resumeModal');
+}
+
+/* ════════ EDIT — ABOUT ════════ */
+function openEditAbout() {
+  if (!isAdmin) return;
+  const a = data.about;
+  document.getElementById('edit-about-text').value       = a.bio      || '';
+  document.getElementById('edit-location').value         = a.location || '';
+  document.getElementById('edit-role').value             = a.role     || '';
+  document.getElementById('edit-email').value            = a.email    || '';
+  document.getElementById('edit-linkedin').value         = a.linkedin || '';
+  document.getElementById('edit-github').value           = a.github   || '';
+  document.getElementById('edit-twitter').value          = a.twitter  || '';
+  document.getElementById('edit-stat-projects').value   = a.stats?.projects || '';
+  document.getElementById('edit-stat-tools').value      = a.stats?.tools    || '';
+  document.getElementById('edit-stat-exp').value        = a.stats?.exp      || '';
+  openModal('editAboutModal');
+}
+
+function saveAbout() {
+  data.about = {
+    bio:      document.getElementById('edit-about-text').value,
+    location: document.getElementById('edit-location').value,
+    role:     document.getElementById('edit-role').value,
+    email:    document.getElementById('edit-email').value,
+    linkedin: document.getElementById('edit-linkedin').value,
+    github:   document.getElementById('edit-github').value,
+    twitter:  document.getElementById('edit-twitter').value,
+    stats: {
+      projects: document.getElementById('edit-stat-projects').value,
+      tools:    document.getElementById('edit-stat-tools').value,
+      exp:      document.getElementById('edit-stat-exp').value
+    }
+  };
+  renderAbout(data.about);
+  saveData();
+  closeModal('editAboutModal');
+  toast('✓ About section updated', 'success');
+}
+
+/* ════════ EDIT — SKILLS ════════ */
+function openEditSkills() {
+  if (!isAdmin) return;
+  document.getElementById('edit-skills-json').value = JSON.stringify(data.skills, null, 2);
+  openModal('editSkillsModal');
+}
+function saveSkills() {
+  try {
+    data.skills = JSON.parse(document.getElementById('edit-skills-json').value);
+    renderSkills(data.skills);
+    saveData();
+    closeModal('editSkillsModal');
+    toast('✓ Skills updated', 'success');
+  } catch { toast('✗ Invalid JSON — check syntax', 'error'); }
+}
+
+/* ════════ PROJECTS CRUD ════════ */
+function openAddProject() {
+  if (!isAdmin) { toast('✗ Admin access required', 'error'); return; }
+  document.getElementById('proj-modal-title').textContent = 'Add New Project';
+  ['edit-proj-id','edit-proj-name','edit-proj-icon','edit-proj-desc',
+   'edit-proj-github','edit-proj-demo','edit-proj-tags'].forEach(id => {
+    document.getElementById(id).value = '';
+  });
+  openModal('editProjectModal');
+}
+
+function openEditProject(id) {
+  if (!isAdmin) return;
+  const p = data.projects.find(x => x.id === id);
+  if (!p) return;
+  document.getElementById('proj-modal-title').textContent = 'Edit Project';
+  document.getElementById('edit-proj-id').value      = p.id;
+  document.getElementById('edit-proj-name').value    = p.name   || '';
+  document.getElementById('edit-proj-icon').value    = p.icon   || '';
+  document.getElementById('edit-proj-desc').value    = p.desc   || '';
+  document.getElementById('edit-proj-github').value  = p.github || '';
+  document.getElementById('edit-proj-demo').value    = p.demo   || '';
+  document.getElementById('edit-proj-tags').value    = (p.tags||[]).join(', ');
+  openModal('editProjectModal');
+}
+
+function saveProject() {
+  const idVal = document.getElementById('edit-proj-id').value.trim();
+  const name  = document.getElementById('edit-proj-name').value.trim();
+  if (!name) { toast('✗ Project name is required', 'error'); return; }
+  const proj = {
+    id:     idVal ? Number(idVal) : Date.now(),
+    icon:   document.getElementById('edit-proj-icon').value.trim()   || '⚙️',
+    name,
+    desc:   document.getElementById('edit-proj-desc').value.trim()   || '',
+    github: document.getElementById('edit-proj-github').value.trim() || '',
+    demo:   document.getElementById('edit-proj-demo').value.trim()   || '',
+    tags:   document.getElementById('edit-proj-tags').value.split(',').map(t=>t.trim()).filter(Boolean)
+  };
+  if (idVal) {
+    const idx = data.projects.findIndex(x => x.id === Number(idVal));
+    if (idx !== -1) data.projects[idx] = proj;
+    else data.projects.unshift(proj);
+  } else {
+    data.projects.unshift(proj);
+  }
+  renderProjects(data.projects);
+  saveData();
+  closeModal('editProjectModal');
+  toast('✓ Project saved', 'success');
+}
+
+function deleteProject(id) {
+  if (!isAdmin) return;
+  if (!confirm('Delete this project? This cannot be undone.')) return;
+  data.projects = data.projects.filter(x => x.id !== id);
+  renderProjects(data.projects);
+  saveData();
+  toast('✓ Project deleted', 'success');
+}
+
+/* ════════ EDIT — CONTACT ════════ */
+function openEditContact() {
+  if (!isAdmin) return;
+  const c = data.contact;
+  document.getElementById('contact-edit-email').value    = c.email    || '';
+  document.getElementById('contact-edit-linkedin').value = c.linkedin || '';
+  document.getElementById('contact-edit-github').value   = c.github   || '';
+  document.getElementById('contact-edit-twitter').value  = c.twitter  || '';
+  openModal('editContactModal');
+}
+function saveContact() {
+  data.contact = {
+    email:    document.getElementById('contact-edit-email').value,
+    linkedin: document.getElementById('contact-edit-linkedin').value,
+    github:   document.getElementById('contact-edit-github').value,
+    twitter:  document.getElementById('contact-edit-twitter').value
+  };
+  renderContact(data.contact);
+  saveData();
+  closeModal('editContactModal');
+  toast('✓ Contact updated', 'success');
+}
+
+/* ════════ EDIT — RESUME ════════ */
+function openEditResume() {
+  if (!isAdmin) return;
+  const r = data.resume;
+  document.getElementById('edit-resume-summary').value = r.summary    || '';
+  document.getElementById('edit-resume-exp').value     = r.experience || document.getElementById('resume-experience').innerHTML;
+  document.getElementById('edit-resume-edu').value     = r.education  || document.getElementById('resume-education').innerHTML;
+  document.getElementById('edit-resume-certs').value   = r.certs      || document.getElementById('resume-certs').innerHTML;
+  openModal('editResumeModal');
+}
+function saveResume() {
+  data.resume = {
+    summary:    document.getElementById('edit-resume-summary').value,
+    experience: document.getElementById('edit-resume-exp').value,
+    education:  document.getElementById('edit-resume-edu').value,
+    certs:      document.getElementById('edit-resume-certs').value
+  };
+  renderResume(data.resume);
+  saveData();
+  closeModal('editResumeModal');
+  closeModal('resumeModal');
+  toast('✓ Resume updated', 'success');
+}
+
+/* ════════ DOWNLOAD RESUME ════════ */
+function downloadResume() {
+  const txt = document.getElementById('resume-content').innerText;
+  const blob = new Blob([`CHARAN TEJA GADDE\nDevOps Engineer\n\n${txt}`], {type:'text/plain'});
+  const a = Object.assign(document.createElement('a'), {href:URL.createObjectURL(blob), download:'Charan_Teja_Gadde_Resume.txt'});
+  a.click(); URL.revokeObjectURL(a.href);
+  toast('✓ Resume downloaded', 'success');
+}
+
+/* ════════ CONTACT FORM ════════ */
+function handleContactForm() {
+  const name = document.getElementById('cf-name').value.trim();
+  const msg  = document.getElementById('cf-msg').value.trim();
+  const to   = data.contact.email || 'charanteja@email.com';
+  const sub  = encodeURIComponent(`Portfolio Inquiry${name ? ' from '+name:''}`);
+  const body = encodeURIComponent(msg || '');
+  window.location.href = `mailto:${to}?subject=${sub}&body=${body}`;
+  toast('✓ Opening email client…', 'success');
+}
+
+/* ════════ TOAST ════════ */
+let _toastTimer;
+function toast(msg, type='info') {
+  clearTimeout(_toastTimer);
+  const el = document.getElementById('toast');
+  el.textContent = msg;
+  el.className = `toast ${type} show`;
+  _toastTimer = setTimeout(() => el.classList.remove('show'), 3200);
+}
+
+/* ════════ UTILS ════════ */
+function deepClone(o) { return JSON.parse(JSON.stringify(o)); }
+
+function deepMerge(target, source) {
+  for (const k of Object.keys(source)) {
+    if (source[k] && typeof source[k] === 'object' && !Array.isArray(source[k])) {
+      if (!target[k] || typeof target[k] !== 'object') target[k] = {};
+      deepMerge(target[k], source[k]);
+    } else { target[k] = source[k]; }
+  }
+  return target;
+}
+
+function setText(id, val) {
+  const el = document.getElementById(id);
+  if (el) el.textContent = val || '';
+}
+
+function setAnchor(id, href, label) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  const a = el.tagName === 'A' ? el : el.querySelector('a');
+  if (a) { a.href = href || '#'; a.textContent = label || '—'; }
+  else el.innerHTML = `<a href="${href||'#'}">${label||'—'}</a>`;
+}
+
+function shortUrl(url) {
+  return (url||'').replace(/^https?:\/\//,'');
+}
+
+/* ════════ SMOOTH SCROLL ════════ */
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const sel = a.getAttribute('href');
+    if (sel === '#') return;
+    const tgt = document.querySelector(sel);
+    if (tgt) { e.preventDefault(); tgt.scrollIntoView({behavior:'smooth'}); }
+  });
+});
+</script>
+</body>
+</html>
