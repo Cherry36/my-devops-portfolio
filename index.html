@@ -410,7 +410,12 @@ body.admin-mode .admin-bar{display:flex;}
     <p style="font-family:var(--font-mono);font-size:.68rem;color:var(--text3);margin-top:14px;">Default: <span style="color:var(--accent);">xxxxxx</span> — change in CONFIG before deploying.</p>
   </div>
 </div>
-
+<!-- Find something like this in your HTML -->
+ <button onclick="showAdminLogin()">Admin</button>
+</div>
+<!-- Change it to: -->
+<button onclick="showAdminLogin()" class="admin-hidden-btn" title="Admin">🔒</button>
+</div>  
 <!-- Resume Modal -->
 <div class="modal-overlay" id="resumeModal">
   <div class="modal" style="max-width:780px;">
