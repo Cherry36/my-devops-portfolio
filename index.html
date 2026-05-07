@@ -23,47 +23,7 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 ::-webkit-scrollbar-thumb{background:var(--accent2);border-radius:3px;}
 <!-- CTG Watermark Background Pattern -->
 
-  <!-- Terminal CTG Logo -->
-<a href="#home" class="nav-brand ctg-logo">
-  <span class="ctg-prompt">$_</span>
-  <span class="ctg-text">CTG</span>
-  <span class="ctg-cursor">▋</span>
-</a>
-  /* === CTG Terminal Logo === */
-.ctg-logo {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  background: #1a1a2e;
-  border: 1px solid #00ff8860;
-  border-radius: 6px;
-  padding: 5px 12px;
-  text-decoration: none;
-  font-family: 'Courier New', monospace;
-  transition: box-shadow 0.3s;
-}
-.ctg-logo:hover {
-  box-shadow: 0 0 12px #00ff8840;
-}
-.ctg-prompt {
-  font-size: 11px;
-  color: #666;
-}
-.ctg-text {
-  font-size: 20px;
-  font-weight: 700;
-  color: #00ff88;
-  letter-spacing: 2px;
-}
-.ctg-cursor {
-  color: #00ff88;
-  animation: blink 1s step-end infinite;
-  font-size: 16px;
-}
-@keyframes blink {
-  0%, 100% { opacity: 1; }
-  50%       { opacity: 0; }
-}
+ 
   
 /* ── NAV ── */
 nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:14px 40px;display:flex;align-items:center;justify-content:space-between;background:rgba(10,14,26,0.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);}
