@@ -22,45 +22,7 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 ::-webkit-scrollbar-track{background:var(--bg);}
 ::-webkit-scrollbar-thumb{background:var(--accent2);border-radius:3px;}
 <!-- CTG Watermark Background Pattern -->
-<div class="ctg-watermark" aria-hidden="true">
-</div>
-  /* === CTG Bold Watermark Pattern === */
-.ctg-watermark {
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  overflow: hidden;
-  background-image: repeating-linear-gradient(
-    45deg,
-    transparent,
-    transparent 60px,
-    rgba(0,255,136,0.025) 60px,
-    rgba(0,255,136,0.025) 61px
-  );
-}
-.ctg-watermark::before {
-  content: "CTG CTG CTG CTG CTG CTG CTG CTG CTG CTG CTG CTG CTG CTG CTG CTG CTG CTG CTG CTG CTG CTG CTG CTG CTG CTG CTG CTG CTG CTG CTG CTG CTG CTG CTG CTG CTG CTG CTG CTG CTG CTG CTG CTG CTG CTG CTG CTG CTG CTG CTG CTG CTG CTG CTG CTG";
-  position: absolute;
-  inset: -100px;
-  font-family: 'Courier New', monospace;
-  font-size: 52px;
-  font-weight: 900;
-  letter-spacing: 18px;
-  word-spacing: 20px;
-  line-height: 2.2;
-  color: rgba(0, 255, 136, 0.045);
-  transform: rotate(-30deg);
-  white-space: normal;
-  word-break: break-all;
-  user-select: none;
-}
 
-/* Make sure all page content sits above watermark */
-body > *:not(.ctg-watermark) {
-  position: relative;
-  z-index: 1;
-}
   <!-- Terminal CTG Logo -->
 <a href="#home" class="nav-brand ctg-logo">
   <span class="ctg-prompt">$_</span>
