@@ -24,6 +24,43 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 <!-- CTG Watermark Background Pattern -->
 <div class="ctg-watermark" aria-hidden="true">
 </div>
+  /* === CTG Bold Watermark Pattern === */
+.ctg-watermark {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+  background-image: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 60px,
+    rgba(0,255,136,0.025) 60px,
+    rgba(0,255,136,0.025) 61px
+  );
+}
+.ctg-watermark::before {
+  content: "CTG CTG CTG CTG CTG CTG CTG CTG CTG CTG CTG CTG CTG CTG CTG CTG CTG CTG CTG CTG CTG CTG CTG CTG CTG CTG CTG CTG CTG CTG CTG CTG CTG CTG CTG CTG CTG CTG CTG CTG CTG CTG CTG CTG CTG CTG CTG CTG CTG CTG CTG CTG CTG CTG CTG CTG";
+  position: absolute;
+  inset: -100px;
+  font-family: 'Courier New', monospace;
+  font-size: 52px;
+  font-weight: 900;
+  letter-spacing: 18px;
+  word-spacing: 20px;
+  line-height: 2.2;
+  color: rgba(0, 255, 136, 0.045);
+  transform: rotate(-30deg);
+  white-space: normal;
+  word-break: break-all;
+  user-select: none;
+}
+
+/* Make sure all page content sits above watermark */
+body > *:not(.ctg-watermark) {
+  position: relative;
+  z-index: 1;
+}
 /* ── NAV ── */
 nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:14px 40px;display:flex;align-items:center;justify-content:space-between;background:rgba(10,14,26,0.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);}
 .nav-logo{font-family:var(--font-head);font-weight:800;font-size:1.15rem;color:var(--accent);letter-spacing:-.5px;}
